@@ -26,6 +26,7 @@ function paramsToObject(entries) {
 
 /************************* functionality *************************/
 
+// This method is used to get data from the API and render 10 random recipes in the carousel div (list)
 function renderRandomRecipesCarousel() {
     let random_recipes_carousel_indicators = $("#random-recipes-carousel-indicators");
     let random_recipes_list = $("#random-recipes-list");
@@ -71,7 +72,6 @@ function renderRecipesList(parameters = {}) {
         async: false,
         dataType: 'json',
         success: function (data) {
-            console.log(`${data}`);
             data.results.forEach(function (item) {
                 $.get("items/recipe-list-item.html", function (data) {
                     data = data.replace("{{recipe-list-item-image}}", item.image);
@@ -91,7 +91,7 @@ function renderRecipeById(id) {
         async: false,
         dataType: 'json',
         success: function (data) {
-            console.log(`${data}`);
+            console.log(data);
             document.getElementById("recipe-title").innerText = data.title;
             document.getElementById("recipe-image").setAttribute('src', data.image);
             document.getElementById("recipe-title-2").innerText = data.title;
